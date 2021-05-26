@@ -5,30 +5,25 @@
  * [387] 字符串中的第一个唯一字符
  */
 import java.util.*;
-import java.util.function.Supplier;
-
-import jdk.nashorn.internal.objects.annotations.Function;
 
 // @lc code=start
 class Solution {
     public int firstUniqChar(String s) {
-        if (s.length() == 0) {
-            return -1;
+        if (s == null || s.length() == 1) {
+            return 0;
         }
-        Map<Character, Integer> count = new LinkedHashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (count.containsKey(s.charAt(i))) {
-                count.put(s.charAt(i), -1);
-            } else {
-                count.put(s.charAt(i), i);
-            }
+        int length = s.length();
+        int[] result = new int[26];
+        for (int i = 0; i < length; i++) {
+            result[s.charAt(i) - 'a']++;
         }
-        for (Character key : count.keySet()) {
-            if (count.get(key) > -1) {
-                return count.get(key);
+        for (int i = 0; i < length; i++) {
+            if (result[s.charAt(i) - 'a'] == 1) {
+                return i;
             }
         }
         return -1;
     }
+
 }
 // @lc code=end
