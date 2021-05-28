@@ -7,48 +7,20 @@
 // @lc code=start
 class Solution {
     public void moveZeroes(int[] nums) {
-        // 快慢指针，慢指针记录左侧不为0 ，快指针向后扫描
-        // if (nums.length == 1) {
-        // return;
-        // }
-
-        int slowIndex = 0, tmpIndex = 0;
-
-        while (tmpIndex < nums.length) {
-            if (nums[slowIndex] != 0) {
-                slowIndex++;
+        int slow = 0;
+        int fast = 0;
+        while (fast < nums.length) {
+            if (nums[fast] != 0) {
+                swap(nums, slow++, fast);
             }
-            tmpIndex++;
+            fast++;
         }
-        int fastIndex = slowIndex + 1;
-        while (fastIndex < nums.length) {
-            if (nums[fastIndex] != 0) {
-                nums[slowIndex++] = nums[fastIndex];
-                nums[fastIndex] = 0;
-            }
-            fastIndex++;
-        }
+    }
 
-        // 把所有不为0 的往前挪
-        // for (int i = -1; i < nums.length - 1;) {
-        // boolean change = false;
-        // for (int j = i + 1; j < nums.length; j++) {
-        // if (nums[j] == 0) {
-        // continue;
-        // } else {
-        // nums[++i] = nums[j];
-        // if (i < j) {
-        // nums[j] = 0;
-        // }
-        // change = true;
-        // break;
-        // }
-        // }
-        // if (!change) {
-        // return;
-        // }
-        // }
-
+    private void swap(int[] data, int left, int right) {
+        int tmp = data[left];
+        data[left] = data[right];
+        data[right] = tmp;
     }
 }
 // @lc code=end
