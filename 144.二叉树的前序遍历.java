@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=94 lang=java
+ * @lc app=leetcode.cn id=144 lang=java
  *
- * [94] 二叉树的中序遍历
+ * [144] 二叉树的前序遍历
  */
 
 // @lc code=start
@@ -21,7 +21,7 @@
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (null == root) {
             return res;
@@ -30,14 +30,13 @@ class Solution {
         TreeNode pNode = root;
         while (null != pNode || !stack.isEmpty()) {
             if (null != pNode) {
+                res.add(pNode.val);
                 stack.push(pNode);
                 pNode = pNode.left;
             } else {
-                pNode = stack.pop();·
-                res.add(pNode.val);
+                pNode = stack.pop();
                 pNode = pNode.right;
             }
-
         }
         return res;
     }
