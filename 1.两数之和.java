@@ -9,12 +9,13 @@ import java.util.*;
 // @lc code=start
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> sub = new HashMap<>();
+        Map<Integer, Integer> result = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            if (sub.containsKey(nums[i])) {
-                return new int[] { i, sub.get(nums[i]) };
+            if (result.containsKey(nums[i])) {
+                return new int[] { i, result.get(nums[i]) };
+            } else {
+                result.put(target - nums[i], i);
             }
-            sub.put(target - nums[i], i);
         }
         return new int[] {};
     }
