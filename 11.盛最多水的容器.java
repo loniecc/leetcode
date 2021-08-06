@@ -9,19 +9,25 @@
 class Solution {
 
     public int maxArea(int[] height) {
-        if (height == null) {
-            return 0;
-        }
-        int left = 0;
-        int right = height.length - 1;
+        int left = 0, right = height.length - 1;
         int max = 0;
+        int curArea = 0;
         while (left < right) {
-            int area = (right - left) * (height[left] > height[right] ? height[right--] : height[left++]);
-            if (area > max) {
-                max = area;
+            curArea = (right - left) * min(height[left], height[right]);
+            if (curArea > max) {
+                max = curArea;
+            }
+            if (height[left] > height[right]) {
+                right--;
+            } else {
+                left++;
             }
         }
         return max;
+    }
+
+    private int min(int numA, int numB) {
+        return numA > numB ? numB : numA;
     }
 
 }
