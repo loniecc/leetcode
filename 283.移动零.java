@@ -7,20 +7,20 @@
 // @lc code=start
 class Solution {
     public void moveZeroes(int[] nums) {
-        int slow = 0;
-        int fast = 0;
+        int slow = 0, fast = 0;
         while (fast < nums.length) {
-            if (nums[fast] != 0) {
-                swap(nums, slow++, fast);
+            if (0 != nums[fast]) {
+                swap(slow++, fast, nums);
             }
             fast++;
         }
     }
 
-    private void swap(int[] data, int left, int right) {
-        int tmp = data[left];
-        data[left] = data[right];
-        data[right] = tmp;
+    private void swap(int left, int right, int[] nums) {
+        int tmp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = tmp;
     }
+
 }
 // @lc code=end
