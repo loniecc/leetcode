@@ -7,26 +7,22 @@
 // @lc code=start
 class Solution {
     public void rotate(int[] nums, int k) {
-        if(nums.length == 1){
-            return ;
-        }
-        int realK = k % nums.length;
-        //1. 全部翻转    
-        reverseArray(nums,0,nums.length);
-        //2. 翻转前半部分
-        reverseArray(nums,0,realK);
-        //3. 翻转后半部分
-        reverseArray(nums,realK,nums.length);
+        k = k % nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
     }
 
-    public void reverseArray(int[] array, int start , int end){
-        for(int i=0;i<(end-start)/2;i++){
-            int tmp = array[start+i];
-            array[start+i] = array[end-1-i];
-            array[end-1-i] = tmp;
+    public void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            int tmp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = tmp;
+            left++;
+            right--;
         }
+
     }
 
 }
 // @lc code=end
-
