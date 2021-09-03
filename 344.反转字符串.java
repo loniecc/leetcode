@@ -7,12 +7,14 @@
 // @lc code=start
 class Solution {
     public void reverseString(char[] s) {
-        for(int i =0;i < s.length/2;i++){
-            char tc = s[i];
-            s[i] = s[s.length -1 - i];
-            s[s.length -1 - i] = tc;
+        int left = 0, right = s.length - 1;
+        while (left < right) {
+            char tmp = s[left];
+            s[left] = s[right];
+            s[right] = tmp;
+            left++;
+            right--;
         }
     }
 }
 // @lc code=end
-
