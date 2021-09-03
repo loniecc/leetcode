@@ -7,16 +7,18 @@
 // @lc code=start
 class Solution {
     public void moveZeroes(int[] nums) {
-        int slow = 0, fast = 0;
-        while (fast < nums.length) {
-            if (0 != nums[fast]) {
-                swap(slow++, fast, nums);
+        int slowPointer = 0, fastPointer = 0;
+
+        while (fastPointer < nums.length) {
+            if (nums[fastPointer] != 0) {
+                swap(nums, slowPointer++, fastPointer);
             }
-            fast++;
+            fastPointer++;
         }
+
     }
 
-    private void swap(int left, int right, int[] nums) {
+    public void swap(int[] nums, int left, int right) {
         int tmp = nums[left];
         nums[left] = nums[right];
         nums[right] = tmp;
