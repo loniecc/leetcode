@@ -31,10 +31,48 @@ class Test{
     }
 
     public static void main(String[] args){
-        int[] a = new int[]{5};
-        quickSort(a,0,a.length-1);
-        for(int i =0 ;i<a.length;i++){
-            System.out.println(a[i]);
+        System.out.println(backspaceCompare("rjhbpvh","rm#jhbpvh"));
+    }
+
+     public static boolean backspaceCompare(String s, String t) {
+        String s1 = parseStr(s);
+        String t1 = parseStr(t);
+        System.out.println(s1);
+        System.out.println(t1);
+        return s1.equals(t1);
+    }
+
+    private static String parseStr(String s){
+        StringBuilder sb = new StringBuilder();
+        
+        int end = s.length()-1;
+        int step = 0;
+        int count =0;
+        while(end > 0){
+            while(end >= 0 && s.charAt(end) == '#'){
+                end--;
+                step++;
+            }
+            while(end > -1 && step > 0){
+                end--;
+                if(end > 0 && s.charAt(end) == '#'){
+                    step++;
+                }else{
+                    step--;
+                } 
+            }
+            if(end < 0){
+                return sb.toString(); 
+            }
+            if(s.charAt(end) != '#'){
+                sb.append(s.charAt(end));
+                end--;
+            }
+            
         }
+        if(end == 0 && s.length()> 0 && s.charAt(0) != '#'){
+            sb.append(s.charAt(0));
+        }
+        return sb.toString();
     }
 }
